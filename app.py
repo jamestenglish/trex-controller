@@ -26,10 +26,13 @@ def tick(data):
 
 def ping(queue, url):
     while True:
-        t0 = time.time()
-        r = requests.get(url)
-        t1 = time.time()
-        queue.put((t1-t0, r.text))
+        try:
+            t0 = time.time()
+            r = requests.get(url)
+            t1 = time.time()
+            queue.put((t1-t0, r.text))
+        except:
+            pass
     
 def count(tick_func, q_a, q_b):
     while True:
