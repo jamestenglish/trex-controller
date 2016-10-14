@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, render_template
 import os
 from flask_socketio import send, emit, SocketIO
 from Queue import Queue
