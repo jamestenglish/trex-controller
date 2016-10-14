@@ -83,12 +83,12 @@ def count(tick_func, q_a, q_b):
 
 
 if __name__ == '__main__':
-    for i in range(6):
+    for i in range(5):
         worker = Thread(target=ping, args=(serviceAQueue, "http://service-a-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
         worker.start()
 
-    for i in range(6):
+    for i in range(5):
         worker = Thread(target=ping, args=(serviceBQueue, "http://service-b-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
         worker.start()
