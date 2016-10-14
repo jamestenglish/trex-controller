@@ -15,8 +15,6 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def index():
-    print('help!')
-    print(str(render_template('index.html')))
     return render_template('index.html')
 
 @app.route('/health')
@@ -83,16 +81,16 @@ if __name__ == '__main__':
     for i in range(20):
         worker = Thread(target=ping, args=(serviceAQueue, "http://service-a-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
-        #worker.start()
+        worker.start()
 
     for i in range(20):
         worker = Thread(target=ping, args=(serviceBQueue, "http://service-b-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
-        #worker.start()
+        worker.start()
 
     counter = Thread(target=count, args=(tick, serviceAQueue, serviceBQueue, ))
     counter.setDaemon(True)
-    #counter.start()
+    counter.start()
 
     socketio.run(app, host='0.0.0.0', port=8080, debug=True)
     #app.run(debug=False,host='0.0.0.0',port=8080)
