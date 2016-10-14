@@ -17,6 +17,13 @@
             var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
 			socket.on('tick', function(msg) {
                 console.log(msg);
+				chart.flow({
+            		columns: [
+                		['ServiceA'].concat(msg.avg_a),
+						['ServiceB'].concat(msg.avg_b),
+            		],
+            		duration: 3000,
+       	 		});
             });
 			var chart = c3.generate({
 			    data: {
