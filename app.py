@@ -15,7 +15,7 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def index():
-    return send_from_directory('static', 'index.html')
+    return render_template('index.html', async_mode=socketio.async_mode)
 
 @app.route('/health')
 def health():
@@ -61,7 +61,8 @@ def count(tick_func, q_a, q_b):
             avg_a += element[0]
             response_a.append(element[1])
 
-        avg_a = float(avg_a) / float(len(result_a))
+        if len(result_a) != 0:
+            avg_a = float(avg_a) / float(len(result_a))
 
         avg_b = 0
         response_b = []
@@ -69,7 +70,8 @@ def count(tick_func, q_a, q_b):
             avg_b += element[0]
             response_b.append(element[1])
 
-        avg_b = float(avg_b) / float(len(result_b))
+        if len(result_b) != 0:
+            avg_b = float(avg_b) / float(len(result_b))
 
         tick_func({'avg_a': [avg_a], 'avg_b': [avg_b], 'response_a': response_a, 'response_b': response_b})
 
@@ -79,17 +81,17 @@ if __name__ == '__main__':
     for i in range(20):
         worker = Thread(target=ping, args=(serviceAQueue, "http://service-a-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
-        worker.start()
+        #worker.start()
 
     for i in range(20):
         worker = Thread(target=ping, args=(serviceBQueue, "http://service-b-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
-        worker.start()
+        #worker.start()
 
     counter = Thread(target=count, args=(tick, serviceAQueue, serviceBQueue, ))
     counter.setDaemon(True)
-    counter.start()
+    #counter.start()
 
-    socketio.run(app, host='0.0.0.0', port=8080)
+    socketio.run(app, host='0.0.0.0', port=8080, debug=True)
     #app.run(debug=False,host='0.0.0.0',port=8080)
 

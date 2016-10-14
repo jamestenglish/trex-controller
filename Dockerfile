@@ -6,5 +6,4 @@ EXPOSE 8080
 ADD . /code
 WORKDIR /code
 
-RUN echo "192.168.100.81      service-a-trex-demo-prod.router.default.svc.cluster.local service-b-trex-demo-prod.router.default.svc.cluster.local" >> /etc/hosts; cat /etc/hosts
 CMD ["python", "app.py"]
