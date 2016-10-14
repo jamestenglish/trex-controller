@@ -61,7 +61,7 @@ def count(tick_func, q_a, q_b):
             avg_a += element[0]
             response_a.append(element[1])
 
-        avg_a = float(avg_a) / float(result_a.size())
+        avg_a = float(avg_a) / float(size(result_a))
 
         avg_b = 0
         response_b = []
@@ -69,7 +69,7 @@ def count(tick_func, q_a, q_b):
             avg_b += element[0]
             response_b.append(element[1])
 
-        avg_b = float(avg_b) / float(result_b.size())
+        avg_b = float(avg_b) / float(size(result_b))
 
         tick_func({'avg_a': [avg_a], 'avg_b': [avg_b], 'response_a': response_a, 'response_b': response_b})
 
