@@ -1,6 +1,6 @@
 from flask import Flask, send_from_directory
 import os
-from flask_socketio import send, emit
+from flask_socketio import send, emit, SocketIO
 from Queue import Queue
 from threading import Thread
 import time
