@@ -32,6 +32,7 @@ def ping(queue, url):
             t1 = time.time()
             queue.put((t1-t0, r.text))
         except:
+            print("error: "+url)
             pass
     
 def count(tick_func, q_a, q_b):
@@ -81,12 +82,12 @@ def count(tick_func, q_a, q_b):
 
 
 if __name__ == '__main__':
-    for i in range(20):
+    for i in range(10):
         worker = Thread(target=ping, args=(serviceAQueue, "http://service-a-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
         worker.start()
 
-    for i in range(20):
+    for i in range(10):
         worker = Thread(target=ping, args=(serviceBQueue, "http://service-b-trex-demo-prod.router.default.svc.cluster.local/demo"),)
         worker.setDaemon(True)
         worker.start()
