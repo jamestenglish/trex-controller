@@ -31,6 +31,7 @@ def ping(queue, url):
             r = requests.get(url)
             t1 = time.time()
             queue.put((t1-t0, r.text))
+            time.sleep(0.1)
         except:
             print("error: "+url)
             pass
