@@ -5,3 +5,8 @@ flask-socketio
 greenlet==0.4.2
 itsdangerous==0.24
 Werkzeug==0.11.10
+Jinja2==2.7.3
+MarkupSafe==0.23
+python-engineio
+python-socketio
+six==1.9.0

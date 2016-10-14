@@ -15,7 +15,7 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def index():
-    return send_from_directory('templates', 'index.html')
+    return render_template('index.html', async_mode=socketio.async_mode)
 
 @app.route('/health')
 def health():
