@@ -55,7 +55,7 @@ def count(tick_func, q_a, q_b):
         result_b = []
         while count_b < max_b:
             try:
-                result_a.append(q_b.get_nowait())
+                result_b.append(q_b.get_nowait())
                 count_b += 1
             except Empty, e:
                 break
