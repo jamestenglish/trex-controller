@@ -42,7 +42,7 @@ def count(tick_func, q_a, q_b):
             try:
                 result_a.append(q_a.get_nowait())
                 count_a += 1
-            except Empty, e
+            except Empty, e:
                 break
 
         count_b = 0
@@ -52,7 +52,7 @@ def count(tick_func, q_a, q_b):
             try:
                 result_a.append(q_b.get_nowait())
                 count_b += 1
-            except Empty, e
+            except Empty, e:
                 break
 
         avg_a = 0
@@ -90,6 +90,6 @@ if __name__ == '__main__':
     counter.setDaemon(True)
     counter.start()
 
-    socketio.run(app)
+    socketio.run(app, host='0.0.0.0', port=8080)
     #app.run(debug=False,host='0.0.0.0',port=8080)
 
